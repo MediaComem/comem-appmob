@@ -1,5 +1,7 @@
 # COMEM+ Mobile Applications course
 
+TODO: add prototypes
+
 ## Plan
 
 * Ionic introduction
