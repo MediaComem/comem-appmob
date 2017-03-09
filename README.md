@@ -24,7 +24,7 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 * Advanced concepts
   * Angular events
-  * Angular UI router
+  * [Angular UI router](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/angular-ui-router?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript closures](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/js-closures?home=MediaComem%2Fcomem-appmob%23readme)
   * JavaScript promises
   * Running Ionic apps on a mobile phone
