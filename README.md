@@ -50,8 +50,15 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 
 [angular]: https://angularjs.org
+[chrome]: https://www.google.com/chrome/
+[comem]: http://www.heig-vd.ch/comem
+[comem-webdev]: https://github.com/MediaComem/comem-webdev
 [cordova]: https://cordova.apache.org
+[git-downloads]: https://git-scm.com/downloads
+[github]: https://github.com
+[heig]: http://www.heig-vd.ch
 [ionic]: http://ionicframework.com
 [ionic-getting-started]: http://ionicframework.com/getting-started/
 [mapbox]: https://www.mapbox.com
+[node]: https://nodejs.org/
 [webserv]: https://github.com/MediaComem/comem-webserv
