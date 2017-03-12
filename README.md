@@ -10,6 +10,16 @@ You will:
 
 This course is a [COMEM+][comem] [web development course][comem-webdev] taught at [HEIG-VD][heig].
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Plan](#plan)
+- [What you will need](#what-you-will-need)
+- [Useful links](#useful-links)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 
 ## Plan
@@ -46,6 +56,13 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 * [Node.js][node] 6+
 * [Ionic][ionic-getting-started]
 * A free [Mapbox][mapbox] account
+
+
+
+## Useful links
+
+* [Citizen Engagement API documentation](https://mediacomem.github.io/comem-citizen-engagement-api)
+* [Ionic setup](https://github.com/MediaComem/comem-citizen-engagement-ionic-setup) ([complete starter project](https://github.com/MediaComem/comem-citizen-engagement-ionic-starter))
 
 
 
