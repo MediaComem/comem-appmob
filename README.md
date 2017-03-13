@@ -16,6 +16,7 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 - [Plan](#plan)
 - [What you will need](#what-you-will-need)
+- [Evaluation](#evaluation)
 - [Useful links](#useful-links)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
