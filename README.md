@@ -59,6 +59,36 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 
 
+## Evaluation
+
+**Features**
+
+* A citizen must be able to register a new account and log in to the app
+* A citizen must be able to report an issue at a specific location, optionally with a picture
+* A citizen must be able to see what issues there are in a map of the area, and the details of those issues (picture, description, state, etc)
+* Citizens and staff members must be able to post comments on issues, and the list of comments for an issue must be visible somewhere in the app
+* *Bonus*: A staff member must be able to log in to the app, start working on issues, and resolve or reject them
+
+**Implementation**
+
+* The app must use the Citizen Engagement API
+* The app must use geolocation
+* The app must use Mapbox (or an equivalent map library)
+* The app must use the camera (works only on physical devices)
+* The app must be configurable to run in several environments (local computer & mobile phone)
+
+**User guide or presentation page**
+
+You must provide a user guide or presentation page for the app.
+You can choose from the following options (one is enough):
+
+* You can present the app in the README of the GitHub repository for the app
+* You can upload your app to a store (e.g. Google Play), and write the presentation page as you would for a real app
+* You can use any other presentation tool but your user guide or presentation page must be available online
+* *Bonus*: Make a webcast demonstrating or selling your app
+
+
+
 ## Useful links
 
 * [Citizen Engagement API documentation](https://mediacomem.github.io/comem-citizen-engagement-api)
