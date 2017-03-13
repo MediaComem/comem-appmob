@@ -86,7 +86,8 @@ You can choose from the following options (one is enough):
 * You can present the app in the README of the GitHub repository for the app
 * You can upload your app to a store (e.g. Google Play), and write the presentation page as you would for a real app
 * You can use any other presentation tool but your user guide or presentation page must be available online
-* *Bonus*: Make a webcast demonstrating or selling your app
+
+*Bonus*: Make a webcast demonstrating or selling your app
 
 
 
