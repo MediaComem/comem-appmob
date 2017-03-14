@@ -38,12 +38,12 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
   * [Angular UI router](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/angular-ui-router?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript closures](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/js-closures?home=MediaComem%2Fcomem-appmob%23readme)
   * JavaScript promises
-  * Running Ionic apps on a mobile phone
-  * Developing Ionic apps with live reload
+  * Running Ionic apps on a mobile phone (and live reload)
+  * Using Ionic View
 
 * Additional tools
-  * Geolocation
-  * Mapbox
+  * Geolocation ([angularjs-geolocation][angularjs-geolocation], can be installed with Bower)
+  * [Mapbox][mapbox] ([angular-leaflet-directive][angular-leaflet-directive], can be installed with Bower)
   * Image upload
 
 
@@ -64,30 +64,34 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 **Features**
 
-* A citizen must be able to register a new account and log in to the app
+* A citizen must be able to register a new account and log in to the app (and log out)
 * A citizen must be able to report an issue at a specific location, optionally with a picture
 * A citizen must be able to see what issues there are in a map of the area, and the details of those issues (picture, description, state, etc)
+* A citizen must be able to use filters or a search to see only some issues (on the map and/or in other screens); there must be at least one filter or search
 * Citizens and staff members must be able to post comments on issues, and the list of comments for an issue must be visible somewhere in the app
-* *Bonus*: A staff member must be able to log in to the app, start working on issues, and resolve or reject them
+* *Bonus*: A staff member can log in to the app, start working on issues, and resolve or reject them
+* *Bonus*: A staff member can add, edit and remove issue types from inside the app
 
 **Implementation**
 
+* The app must follow Angular best practices
 * The app must use the Citizen Engagement API
-* The app must use geolocation
+* The app must use geolocation (e.g. to automatically determine an issue's location or center the map)
 * The app must use Mapbox (or an equivalent map library)
 * The app must use the camera (works only on physical devices)
 * The app must be configurable to run in several environments (local computer & mobile phone)
+* Secrets (passwords & keys) **must not** be committed to the Git repository
 
-**User guide or presentation page**
+**Presentation**
 
-You must provide a user guide or presentation page for the app.
+You must provide a presentation for your app.
+This can be **either** in the form of a **user guide** or in the form of a **pitch** as if it were a real app that you were going to sell.
 You can choose from the following options (one is enough):
 
 * You can present the app in the README of the GitHub repository for the app
-* You can upload your app to a store (e.g. Google Play), and write the presentation page as you would for a real app
-* You can use any other presentation tool but your user guide or presentation page must be available online
-
-*Bonus*: Make a webcast demonstrating or selling your app
+* You can upload your app to a store (e.g. Google Play), and write the store page as you would for a real app
+* You can make a webcast demonstrating or selling your app
+* You can use any other presentation tool but your user guide or pitch must be available online
 
 
 
@@ -99,6 +103,8 @@ You can choose from the following options (one is enough):
 
 
 [angular]: https://angularjs.org
+[angular-leaflet-directive]: https://github.com/tombatossals/angular-leaflet-directive
+[angularjs-geolocation]: https://github.com/arunisrael/angularjs-geolocation
 [chrome]: https://www.google.com/chrome/
 [comem]: http://www.heig-vd.ch/comem
 [comem-webdev]: https://github.com/MediaComem/comem-webdev
