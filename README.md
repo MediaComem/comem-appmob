@@ -34,16 +34,11 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
   * Live setup
 
 * Advanced concepts
-  * Angular events
   * [Angular UI router](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/angular-ui-router?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript closures](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/js-closures?home=MediaComem%2Fcomem-appmob%23readme)
-  * JavaScript promises
-  * Running Ionic apps on a mobile phone (and live reload)
-  * Using Ionic View
-
-* Additional tools
-  * Geolocation ([angularjs-geolocation][angularjs-geolocation], can be installed with Bower)
-  * [Mapbox][mapbox] ([angular-leaflet-directive][angular-leaflet-directive], can be installed with Bower)
+  * [JavaScript promises](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/js-promises?home=MediaComem%2Fcomem-appmob%23readme)
+  * [Ionic extras](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/ionic-extras?home=MediaComem%2Fcomem-appmob%23readme) (geolocation, maps, camera)
+  * Angular events
   * Image upload
 
 
