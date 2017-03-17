@@ -22,12 +22,13 @@ You should have received a qimg authentication token that grants you access to t
 There are two new configuration properties your app needs to have:
 
 * The URL to the qimg API
-  (again, in development with `ionic serve`, you will need a proxy, while in production you want to use the real URL)
+
+  (In development with `ionic serve`, you will need a proxy, while in production you want to use the real URL)
 * The qimg API authentication token
 
 Apply the following changes to your app:
 
-1. Add a new proxy to the qimg API in `ionic.config.json`:
+1. Add a new proxy to the qimg API in the `proxies` section of `ionic.config.json`:
 
    ```json
    {
@@ -41,13 +42,13 @@ Apply the following changes to your app:
    "qimgUrl": "/qimg-api-proxy",
    "qimgSecret": "..."
    ```
-3. Add two new `qimgUrl` and `qimgSecret` properties to `config/production.json`, this time using the real qimg API URL:
+3. Add two new `qimgUrl` and `qimgSecret` properties to `config/production.json`, this time using the real URL:
 
    ```json
    "qimgUrl": "https://comem-qimg.herokuapp.com/api",
    "qimgSecret": "..."
    ```
-4. Update `constants.js` to define two new `qimgUrl` and `qimgSecret` constants with placeholders:
+4. Update `constants.js` (the one in the root directory of your project) to define two new `qimgUrl` and `qimgSecret` constants with placeholders:
 
    ```js
    .constant('qimgUrl', '@qimgUrl@')
@@ -79,15 +80,26 @@ angular.module('citizen-engagement')
 Here's an example of a controller that will:
 
 * Allow the user to take a picture
-* Allow the user to create an issue:
+* Allow the user to create an issue
   * Upload the image to the qimg API to obtain an image URL
   * Create the issue with the new image URL
 
 ```js
-angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl, CameraService, $http, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
+angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl, CameraService, geolocation, $http, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
   var newIssueCtrl = this;
 
   newIssueCtrl.issue = {};
+
+  geolocation.getLocation().then(function(data) {
+    newIssueCtrl.issue.location = {
+      type: 'Point',
+      coordinates: [ data.coords.longitude, data.coords.latitude ]
+    };
+
+    $log.debug('Location is ' + JSON.stringify(newIssueCtrl.issue.location));
+  }).catch(function(err) {
+    $log.error('Could not get location because ' + err.message);
+  });
 
   newIssueCtrl.takePicture = function() {
     if (!CameraService.isSupported()) {
