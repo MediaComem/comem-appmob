@@ -37,9 +37,8 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
   * [Angular UI router](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/angular-ui-router?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript closures](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/js-closures?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript promises](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/js-promises?home=MediaComem%2Fcomem-appmob%23readme)
-  * [Ionic extras](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/ionic-extras?home=MediaComem%2Fcomem-appmob%23readme) (geolocation, maps, camera)
+  * [Ionic extras (geolocation, maps, camera)](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/ionic-extras?home=MediaComem%2Fcomem-appmob%23readme)
   * Angular events
-  * Image upload
 
 
 
@@ -94,7 +93,8 @@ You can choose from the following options (one is enough):
 
 * [Citizen Engagement API documentation](https://mediacomem.github.io/comem-citizen-engagement-api)
 * [Ionic setup](https://github.com/MediaComem/comem-citizen-engagement-ionic-setup) ([complete starter project](https://github.com/MediaComem/comem-citizen-engagement-ionic-starter))
-* [qimg API][qimg]
+k [qimg API][qimg]
+* [Image upload](IMAGE-UPLOAD.md)
 
 
 
