@@ -93,7 +93,7 @@ You can choose from the following options (one is enough):
 
 * [Citizen Engagement API documentation](https://mediacomem.github.io/comem-citizen-engagement-api)
 * [Ionic setup](https://github.com/MediaComem/comem-citizen-engagement-ionic-setup) ([complete starter project](https://github.com/MediaComem/comem-citizen-engagement-ionic-starter))
-k [qimg API][qimg]
+* [qimg API][qimg]
 * [Image upload](IMAGE-UPLOAD.md)
 
 

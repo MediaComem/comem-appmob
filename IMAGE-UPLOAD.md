@@ -27,10 +27,39 @@ There are two new configuration properties your app needs to have:
 
 Apply the following changes to your app:
 
-1. Add two new `qimgUrl` and `qimgSecret` properties to `config/development.json` and `config/production.json`
-2. Update `constants.js` to define two new `qimgUrl` and `qimgSecret` constants with placeholders
-3. Update `gulpfile.js` to replace your new `qimgUrl` and `qimgSecret` placeholders
-4. Run `gulp config-development` or `gulp config-production` to apply the new configuration
+1. Add a new proxy to the qimg API in `ionic.config.json`:
+
+   ```json
+   {
+     "path": "/qimg-api-proxy",
+     "proxyUrl": "https://comem-qimg.herokuapp.com/api"
+   }
+   ```
+2. Add two new `qimgUrl` and `qimgSecret` properties to `config/development.json` using the new proxy:
+
+   ```json
+   "qimgUrl": "/qimg-api-proxy",
+   "qimgSecret": "..."
+   ```
+3. Add two new `qimgUrl` and `qimgSecret` properties to `config/production.json`, this time using the real qimg API URL:
+
+   ```json
+   "qimgUrl": "https://comem-qimg.herokuapp.com/api",
+   "qimgSecret": "..."
+   ```
+4. Update `constants.js` to define two new `qimgUrl` and `qimgSecret` constants with placeholders:
+
+   ```js
+   .constant('qimgUrl', '@qimgUrl@')
+   .constant('qimgSecret', '@qimgSecret@')
+   ```
+5. Update `gulpfile.js` to replace your new `qimgUrl` and `qimgSecret` placeholders:
+
+   ```js
+   .pipe(replace(/@qimgUrl@/g, config.qimgUrl))
+   .pipe(replace(/@qimgSecret@/g, config.qimgSecret))
+   ```
+6. Run `gulp config-development` or `gulp config-production` to apply the new configuration
 
 After doing this, you `www/js/constants.js` file should look like this:
 
@@ -55,16 +84,24 @@ Here's an example of a controller that will:
   * Create the issue with the new image URL
 
 ```js
-angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl, CameraService, $http, $q, qimgSecret, qimgUrl, $log) {
+angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl, CameraService, $http, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
   var newIssueCtrl = this;
 
   newIssueCtrl.issue = {};
 
   newIssueCtrl.takePicture = function() {
-    return CameraService.getPicture().then(function(pictureData) {
-      newIssueCtrl.pictureData = pictureData;
+    if (!CameraService.isSupported()) {
+      return $ionicPopup.alert({
+        title: 'Not supported',
+        template: 'You cannot use the camera on this platform'
+      });
+    }
+
+    CameraService.getPicture({ quality: 50 }).then(function(result) {
+      $log.debug('Picture taken!');
+      newIssueCtrl.pictureData = result;
     }).catch(function(err) {
-      $log.error(err);
+      $log.error('Could not get picture because: ' + err.message);
     });
   };
 
@@ -94,8 +131,10 @@ angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl,
 
   function postIssue(imageRes) {
 
-    // Use the image URL from the qimg API response
-    newIssueCtrl.issue.imageUrl = imageRes.data.url;
+    // Use the image URL from the qimg API response (if any)
+    if (imageRes) {
+      newIssueCtrl.issue.imageUrl = imageRes.data.url;
+    }
 
     // Create the issue
     return $http({
@@ -104,6 +143,34 @@ angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl,
       data: newIssueCtrl.issue
     });
   }
+});
+```
+
+
+
+## Authentication
+
+You are going to have to authenticate to the qimg API which is separate from the citizen engagement API.
+
+In the beginning, we added an `AuthInterceptor` to automatically set the `Authorization` header on all our requests.
+Be sure to **update** this interceptor, otherwise it will overwrite the Authorization header from the `postImage()` call:
+
+```js
+angular.module('citizen-engagement').factory('AuthInterceptor', function(AuthService) {
+  return {
+
+    // The request function will be called before all requests.
+    // In it, you can modify the request configuration object.
+    request: function(config) {
+
+      // If the user is logged in, add the Authorization header (unless it's already there)
+      if (AuthService.authToken && !config.headers.Authorization) {
+        config.headers.Authorization = 'Bearer ' + AuthService.authToken;
+      }
+
+      return config;
+    }
+  };
 });
 ```
 
