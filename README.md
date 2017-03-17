@@ -94,6 +94,7 @@ You can choose from the following options (one is enough):
 
 * [Citizen Engagement API documentation](https://mediacomem.github.io/comem-citizen-engagement-api)
 * [Ionic setup](https://github.com/MediaComem/comem-citizen-engagement-ionic-setup) ([complete starter project](https://github.com/MediaComem/comem-citizen-engagement-ionic-starter))
+* [qimg API][qimg]
 
 
 
@@ -111,4 +112,5 @@ You can choose from the following options (one is enough):
 [ionic-getting-started]: http://ionicframework.com/getting-started/
 [mapbox]: https://www.mapbox.com
 [node]: https://nodejs.org/
+[qimg]: https://mediacomem.github.io/comem-qimg/
 [webserv]: https://github.com/MediaComem/comem-webserv
