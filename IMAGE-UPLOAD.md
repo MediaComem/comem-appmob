@@ -85,23 +85,14 @@ Here's an example of a controller that will:
   * Create the issue with the new image URL
 
 ```js
-angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl, CameraService, geolocation, $http, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
+angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl, CameraService, $http, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
   var newIssueCtrl = this;
 
   newIssueCtrl.issue = {};
 
-  geolocation.getLocation().then(function(data) {
-    newIssueCtrl.issue.location = {
-      type: 'Point',
-      coordinates: [ data.coords.longitude, data.coords.latitude ]
-    };
-
-    $log.debug('Location is ' + JSON.stringify(newIssueCtrl.issue.location));
-  }).catch(function(err) {
-    $log.error('Could not get location because ' + err.message);
-  });
-
+  // Take a picture and attach it to "newIssueCtrl.issue"
   newIssueCtrl.takePicture = function() {
+    // Display an alert if the camera is not supported
     if (!CameraService.isSupported()) {
       return $ionicPopup.alert({
         title: 'Not supported',
@@ -109,6 +100,7 @@ angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl,
       });
     }
 
+    // Take the picture
     CameraService.getPicture({ quality: 50 }).then(function(result) {
       $log.debug('Picture taken!');
       newIssueCtrl.pictureData = result;
@@ -117,8 +109,10 @@ angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl,
     });
   };
 
+  // Create an issue:
+  // * First upload the picture to the qimg API
+  // * Then create the issue using the image URL provided by the qimg API
   newIssueCtrl.createIssue = function() {
-    // First upload the image, then create the issue using the image URL provided by the qimg API
     return postImage().then(postIssue);
   };
 
