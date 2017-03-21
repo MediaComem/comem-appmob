@@ -37,8 +37,8 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
   * [Angular UI router](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/angular-ui-router?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript closures](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/js-closures?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript promises](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/js-promises?home=MediaComem%2Fcomem-appmob%23readme)
+  * [Angular promises](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/angular-promises?home=MediaComem%2Fcomem-appmob%23readme)
   * [Ionic extras (geolocation, maps, camera)](https://mediacomem.github.io/comem-webdev-docs/2017/subjects/ionic-extras?home=MediaComem%2Fcomem-appmob%23readme)
-  * Angular events
 
 
 
