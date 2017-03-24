@@ -93,6 +93,7 @@ Each group must send an e-mail **no later than March 27th 2017** to Simon Ouleva
 
 * The link to your source code repository on GitHub
 * Your `config/development.json` and `config/production.json` files
+* The link to your webcast, presentation page or user guide (if it's not in the repository)
 
 
 
