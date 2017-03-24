@@ -87,6 +87,13 @@ You can choose from the following options (one is enough):
 * You can make a webcast demonstrating or selling your app
 * You can use any other presentation tool but your user guide or pitch must be available online
 
+### Delivery
+
+Each group must send an e-mail **no later than March 27th 2017** to Simon Oulevay with:
+
+* The link to your source code repository on GitHub
+* Your `config/development.json` and `config/production.json` files
+
 
 
 ## Useful links
