@@ -34,7 +34,7 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
   * [JavaScript modules](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-modules?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript promises](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-promises?home=MediaComem%2Fcomem-appmob%23readme)
 
-* [TypeScript](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/typescript?home=MediaComem%2Fcomem-appmob%23readme)
+* [TypeScript](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/ts?home=MediaComem%2Fcomem-appmob%23readme)
 * [Angular](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/angular?home=MediaComem%2Fcomem-appmob%23readme)
 
 * Setup
