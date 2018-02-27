@@ -27,15 +27,21 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 * Introduction
   * [Ionic](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/ionic?home=MediaComem%2Fcomem-appmob%23readme)
-  * [Angular](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/angular?home=MediaComem%2Fcomem-appmob%23readme)
+
+* Going further with JavaScript
+  * [JavaScript prototypes](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-prototypes?home=MediaComem%2Fcomem-appmob%23readme)
+  * [JavaScript classes](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-classes?home=MediaComem%2Fcomem-appmob%23readme)
+  * [JavaScript modules](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-modules?home=MediaComem%2Fcomem-appmob%23readme)
+  * [JavaScript promises](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-promises?home=MediaComem%2Fcomem-appmob%23readme)
+
+* [Angular](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/angular?home=MediaComem%2Fcomem-appmob%23readme)
 
 * Setup
   * Mockups
   * [Live setup][setup-project]
 
-* Advanced concepts
+* Additional JavaScript concepts
   * [JavaScript closures](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-closures?home=MediaComem%2Fcomem-appmob%23readme)
-  * [JavaScript promises](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-promises?home=MediaComem%2Fcomem-appmob%23readme)
 
 * Ionic
   * Geolocation
