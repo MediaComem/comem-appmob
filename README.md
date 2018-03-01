@@ -25,17 +25,16 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 ## Plan
 
-* Introduction
-  * [Ionic](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/ionic?home=MediaComem%2Fcomem-appmob%23readme)
-
 * Going further with JavaScript
   * [JavaScript prototypes](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-prototypes?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript classes](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-classes?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript modules](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-modules?home=MediaComem%2Fcomem-appmob%23readme)
   * [JavaScript promises](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-promises?home=MediaComem%2Fcomem-appmob%23readme)
 
-* [TypeScript](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/ts?home=MediaComem%2Fcomem-appmob%23readme)
-* [Angular](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/angular?home=MediaComem%2Fcomem-appmob%23readme)
+* Ionic
+  * [Introduction](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/ionic?home=MediaComem%2Fcomem-appmob%23readme)
+  * [TypeScript](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/ts?home=MediaComem%2Fcomem-appmob%23readme)
+  * [Angular](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/angular?home=MediaComem%2Fcomem-appmob%23readme)
 
 * Setup
   * Mockups
@@ -48,6 +47,7 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
   * Geolocation
   * Maps
   * Camera
+  * Image upload
 
 
 
@@ -109,7 +109,6 @@ Each group must send an e-mail **no later than March 23th 2018** to Simon Ouleva
 * [Citizen Engagement API documentation][citizen-engagement-api]
 * [Ionic setup][setup-project] ([complete starter project][starter-project])
 * [qimg API][qimg]
-* [Image upload](IMAGE-UPLOAD.md)
 
 
 
