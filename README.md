@@ -44,10 +44,9 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
   * [JavaScript closures](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/js-closures?home=MediaComem%2Fcomem-appmob%23readme)
 
 * Ionic
-  * Geolocation
-  * Maps
-  * Camera
-  * Image upload
+  * [Working with Angular in Ionic](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/ionic-angular?home=MediaComem%2Fcomem-appmob%23readme)
+  * [Ionic extras (geolocation, leaflet & camera)](https://mediacomem.github.io/comem-webdev-docs/2017-2018/subjects/ionic-extras?home=MediaComem%2Fcomem-appmob%23readme)
+  * [Image upload](IMAGE-UPLOAD.md)
 
 
 
