@@ -21,163 +21,113 @@ You should have received a qimg authentication token that grants you access to t
 
 There are two new configuration properties your app needs to have:
 
-* The URL to the qimg API
+* The URL to the qimg API.
+* The qimg API authentication token.
 
-  (In development with `ionic serve`, you will need a proxy, while in production you want to use the real URL)
-* The qimg API authentication token
+You should add those to your `src/app/config.ts` file:
 
-Apply the following changes to your app:
+```ts
+export const config = {
+  apiUrl: 'https://comem-citizen-engagement.herokuapp.com/api',
+* qimgUrl: 'https://comem-qimg.herokuapp.com/api',
+* qimgSecret: 'changeme'
+}
+```
 
-1. Add a new proxy to the qimg API in the `proxies` section of `ionic.config.json`:
+Do not forget to also update `src/app/config.sample.ts` to provide appropriate examples for other developers who might work on the project.
 
-   ```json
-   {
-     "path": "/qimg-api-proxy",
-     "proxyUrl": "https://comem-qimg.herokuapp.com/api"
-   }
-   ```
-2. Add two new `qimgUrl` and `qimgSecret` properties to `config/development.json` using the new proxy:
 
-   ```json
-   "qimgUrl": "/qimg-api-proxy",
-   "qimgSecret": "..."
-   ```
-3. Add two new `qimgUrl` and `qimgSecret` properties to `config/production.json`, this time using the real URL:
 
-   ```json
-   "qimgUrl": "https://comem-qimg.herokuapp.com/api",
-   "qimgSecret": "..."
-   ```
-4. Update `constants.js` (the one in the root directory of your project) to define two new `qimgUrl` and `qimgSecret` constants with placeholders:
+## Model
 
-   ```js
-   .constant('qimgUrl', '@qimgUrl@')
-   .constant('qimgSecret', '@qimgSecret@')
-   ```
-5. Update `gulpfile.js` to replace your new `qimgUrl` and `qimgSecret` placeholders:
+Here's an example model you might need (save it a to a file in `src/models`).
+It represents the response from the qimg API when creating an image:
 
-   ```js
-   .pipe(replace(/@qimgUrl@/g, config.qimgUrl))
-   .pipe(replace(/@qimgSecret@/g, config.qimgSecret))
-   ```
-6. Run `gulp config-development` or `gulp config-production` to apply the new configuration
-
-After doing this, you `www/js/constants.js` file should look like this:
-
-```js
-angular.module('citizen-engagement')
-  .constant('apiUrl', '...')
-  .constant('mapboxSecret', '...')
-  .constant('qimgUrl', '...')
-  .constant('qimgSecret', '...')
-;
+```ts
+export class QimgImage {
+  id: string;
+  size: number;
+  url: string;
+  createdAt: string;
+}
 ```
 
 
 
 ## Implementation
 
-Here's an example of a controller that will:
+Here's an example of code in a sample `ExamplePage` component that will:
 
-* Allow the user to take a picture
-* Allow the user to create an issue
-  * Upload the image to the qimg API to obtain an image URL
-  * Create the issue with the new image URL
+* Take a picture.
+* Upload the picture data to the qimg API to obtain an image URL.
+* Create an issue in the Citizen Engagement API with the image URL.
 
-```js
-angular.module('citizen-engagement').controller('NewIssueCtrl', function(apiUrl, CameraService, $http, $ionicPopup, $log, $q, qimgSecret, qimgUrl) {
-  var newIssueCtrl = this;
+```ts
+// Other imports...
+import { HttpClient } from '@angular/common/http';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Observable } from 'rxjs/Observable';
+import { switchMap } from 'rxjs/operators';
 
-  newIssueCtrl.issue = {};
+import config from '../../app/config';
+import { Issue } from '../../models/issue';
+import { QimgImage } from '../../models/qimg-image';
 
-  // Take a picture and attach it to "newIssueCtrl.issue"
-  newIssueCtrl.takePicture = function() {
-    // Display an alert if the camera is not supported
-    if (!CameraService.isSupported()) {
-      return $ionicPopup.alert({
-        title: 'Not supported',
-        template: 'You cannot use the camera on this platform'
-      });
-    }
+// ...
+export class ExamplePage {
+  issue: Issue;
+  pictureData: string;
+  pictureUrl: string;
 
-    // Take the picture
-    CameraService.getPicture({ quality: 50 }).then(function(result) {
-      $log.debug('Picture taken!');
-      newIssueCtrl.pictureData = result;
-    }).catch(function(err) {
-      $log.error('Could not get picture because: ' + err.message);
+  constructor(
+    // Other constructor parameters...
+    private camera: Camera,
+    private httpClient: HttpClient
+  ) {
+    // ...
+  }
+
+  takeAndUploadPicture() {
+    this.takePicture().pipe(switchMap(() => this.uploadPicture())).subscribe(image => {
+      if (image) {
+        console.log(`Successfully uploaded image to qimg API`);
+        this.pictureUrl = image.url;
+      }
+    }, err => {
+      console.warn('Could not take or upload picture', err);
     });
-  };
+  }
 
-  // Create an issue:
-  // * First upload the picture to the qimg API
-  // * Then create the issue using the image URL provided by the qimg API
-  newIssueCtrl.createIssue = function() {
-    return postImage().then(postIssue);
-  };
+  private takePicture(): Observable<string> {
+    this.pictureData = undefined;
 
-  function postImage() {
-    if (!newIssueCtrl.pictureData) {
-      // If no image was taken, return a promise resolved with "null"
-      return $q.when(null);
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    const promise = this.camera.getPicture(options).then(pictureData => {
+      this.pictureData = pictureData;
+      return pictureData;
+    });
+
+    return Observable.fromPromise(promise);
+  }
+
+  private uploadPicture(): Observable<QimgImage> {
+    if (!this.pictureData) {
+      return Observable.of(undefined);
     }
 
-    // Upload the image to the qimg API
-    return $http({
-      method: 'POST',
-      url: qimgUrl + '/images',
+    return this.httpClient.post<QimgImage>(`${config.qimgUrl}/images`, { data: this.pictureData }, {
       headers: {
-        Authorization: 'Bearer ' + qimgSecret
-      },
-      data: {
-        data: newIssueCtrl.pictureData
+        Authorization: `Bearer ${config.qimgSecret}`
       }
     });
   }
-
-  function postIssue(imageRes) {
-
-    // Use the image URL from the qimg API response (if any)
-    if (imageRes) {
-      newIssueCtrl.issue.imageUrl = imageRes.data.url;
-    }
-
-    // Create the issue
-    return $http({
-      method: 'POST',
-      url: apiUrl + '/issues',
-      data: newIssueCtrl.issue
-    });
-  }
-});
-```
-
-
-
-## Authentication
-
-You are going to have to authenticate to the qimg API which is separate from the citizen engagement API.
-
-In the beginning, we added an `AuthInterceptor` to automatically set the `Authorization` header on all our requests.
-Be sure to **update** this interceptor, otherwise it will overwrite the Authorization header from the `postImage()` call:
-
-```js
-angular.module('citizen-engagement').factory('AuthInterceptor', function(AuthService) {
-  return {
-
-    // The request function will be called before all requests.
-    // In it, you can modify the request configuration object.
-    request: function(config) {
-
-      // If the user is logged in, add the Authorization header (unless it's already there)
-      if (AuthService.authToken && !config.headers.Authorization) {
-        config.headers.Authorization = 'Bearer ' + AuthService.authToken;
-      }
-
-      return config;
-    }
-  };
-});
+}
 ```
 
 
