@@ -56,88 +56,190 @@ export class QimgImage {
 
 
 
-## Implementation
+## Provider
 
+Let's create a new provider that will be responsible for:
 
+* Taking pictures.
+* Uploading them to the qimg API.
 
-### Create a 
+You can generate it with this command:
 
 ```bash
 $> ionic generate provider Picture
 ```
 
-Here's an example of code in a sample `ExamplePage` component that will:
-
-* Take a picture.
-* Upload the picture data to the qimg API to obtain an image URL.
-* Create an issue in the Citizen Engagement API with the image URL.
+The following changes *should* have been made automatically,
+but make sure that's actually the case, or make the changes yourself if need be:
 
 ```ts
 // Other imports...
+// TODO: make sure the new provider has been imported
+import { PictureProvider } from '../providers/picture/picture';
+
+@NgModule({
+  declarations: [ /* ... */ ],
+  imports: [ /* ... */ ],
+  bootstrap: [ /* ... */ ],
+  entryComponents: [ /* ... */ ],
+  providers: [
+    // Other providers...
+    // TODO: make sure the new provider has been added to the module's providers array
+    PictureProvider
+  ]
+})
+export class AppModule {}
+```
+
+**Replace the entire contents of `src/providers/picture/picture.ts`** with the following code:
+
+```ts
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Observable } from 'rxjs/Observable';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
-import config from '../../app/config';
-import { Issue } from '../../models/issue';
+import { config } from '../../app/config';
 import { QimgImage } from '../../models/qimg-image';
 
-// ...
-export class ExamplePage {
-  issue: Issue;
-  pictureData: string;
-  pictureUrl: string;
+/**
+ * Service to take pictures and upload them to the qimg API.
+ */
+@Injectable()
+export class PictureProvider {
 
-  constructor(
-    // Other constructor parameters...
-    private camera: Camera,
-    private httpClient: HttpClient
-  ) {
-    // ...
+  constructor(private camera: Camera, private http: HttpClient) {
+    console.log('Hello PictureProvider Provider');
+    console.log('@@@ http client', !!this.http);
   }
 
-  takeAndUploadPicture() {
-    this.takePicture().pipe(switchMap(() => this.uploadPicture())).subscribe(image => {
-      if (image) {
-        console.log(`Successfully uploaded image to qimg API`);
-        this.pictureUrl = image.url;
-      }
-    }, err => {
-      console.warn('Could not take or upload picture', err);
-    });
+  /**
+   * Takes a picture, uploads it to the qimg API, and returns the created image.
+   *
+   * Returns an observable that will emit the created QimgObject if the picture
+   * has been taken and successfully uploaded to the qimg API. An error may be
+   * emitted instead if the user does not take a picture of if the upload fails.
+   */
+  takeAndUploadPicture(): Observable<QimgImage> {
+
+    // Take a picture.
+    // This creates an observable of picture data.
+    const pictureData$ = this.takePicture();
+
+    // Once the picture has been taken, upload it to the qimg API.
+    // This returns a new observable of the resulting QimgImage object.
+    const uploadedImage$ = pictureData$.pipe(switchMap(data => this.uploadPicture(data)))
+
+    // Once the picture has been uploaded, log a message to the console
+    // indicating that all went well.
+    // This does not change the observable stream.
+    const debug$ = uploadedImage$.pipe(tap(image => console.log(`Successfully uploaded picture to ${image.url}`)));
+
+    // Return the observable stream.
+    return debug$;
   }
 
+  /**
+   * Launches the camera to take a picture.
+   *
+   * Returns an observable that will emit the raw picture data as a string
+   * once the picture has been taken. An error may be emitted instead if the
+   * user does not take a picture.
+   */
   private takePicture(): Observable<string> {
-    this.pictureData = undefined;
 
+    // Prepare camera options.
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     };
 
-    const promise = this.camera.getPicture(options).then(pictureData => {
-      this.pictureData = pictureData;
-      return pictureData;
-    });
+    // Start taking a picture.
+    // The promise will be resolved when the user has snapped and validated the picture.
+    // It may be rejected if the user does not take a picture.
+    const pictureDataPromise = this.camera.getPicture(options);
 
-    return Observable.fromPromise(promise);
+    // Convert the promise to an observable and return it.
+    return Observable.fromPromise(pictureDataPromise);
   }
 
-  private uploadPicture(): Observable<QimgImage> {
-    if (!this.pictureData) {
-      return Observable.of(undefined);
-    }
+  /**
+   * Uploads raw picture data to the qimg API.
+   *
+   * Returns an observable that will emit the created QimgImage object.
+   * An error may be emitted instead if the upload fails.
+   */
+  private uploadPicture(pictureData: string): Observable<QimgImage> {
 
-    return this.httpClient.post<QimgImage>(`${config.qimgUrl}/images`, { data: this.pictureData }, {
+    const requestBody = {
+      data: pictureData
+    };
+
+    const requestOptions = {
       headers: {
         Authorization: `Bearer ${config.qimgSecret}`
       }
+    };
+
+    return this.http.post<QimgImage>(`${config.qimgUrl}/images`, requestBody, requestOptions);
+  }
+
+}
+```
+
+
+
+## Usage
+
+Here's an example of how to use the new provider in a sample `ExamplePage` component:
+
+```ts
+// Other imports...
+// TODO: import the model and provider
+import { QimgImage } from '../../models/qimg-image';
+import { PictureProvider } from '../../providers/picture/picture';
+
+@Component({
+  selector: 'page-example',
+  templateUrl: 'example.html',
+})
+export class ExamplePage {
+  // TODO: add a picture field to the class
+  picture: QimgImage;
+
+  constructor(
+    // Other constructor parameters...
+    // TODO: inject the picture provider
+    private pictureService: PictureProvider
+  ) {
+  }
+
+  // ...
+
+  // TODO: add a method to take a picture
+  //       (replace it if you already have it)
+  takePicture() {
+    this.pictureService.takeAndUploadPicture().subscribe(picture => {
+      this.picture = picture;
+    }, err => {
+      console.warn('Could not take picture', err);
     });
   }
+
 }
+```
+
+Update the component's template and make sure you have:
+
+* A button that calls the `takePicture()` method.
+* An `<img>` tag that displays the uploaded picture's URL once available.
+
+```html
+<button ion-button (click)='takePicture()'>Take picture</button>
+<img *ngIf='picture' [src]='picture.url' />
 ```
 
 
