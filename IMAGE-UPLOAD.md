@@ -69,7 +69,7 @@ You can generate it with this command:
 $> ionic generate provider Picture
 ```
 
-The following changes *should* have been made automatically,
+The following changes *should* have been made automatically to `src/app/app.module.ts`,
 but make sure that's actually the case, or make the changes yourself if need be:
 
 ```ts
@@ -234,8 +234,8 @@ export class ExamplePage {
 
 Update the component's template and make sure you have:
 
-* A button that calls the `takePicture()` method.
-* An `<img>` tag that displays the uploaded picture's URL once available.
+* A button that calls the `takePicture()` method (you might already have it).
+* An `<img>` tag that displays the uploaded picture's URL once available (replace the existing one if you already have it).
 
 ```html
 <button ion-button (click)='takePicture()'>Take picture</button>
