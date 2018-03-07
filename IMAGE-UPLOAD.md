@@ -29,8 +29,9 @@ You should add those to your `src/app/config.ts` file:
 ```ts
 export const config = {
   apiUrl: 'https://comem-citizen-engagement.herokuapp.com/api',
-* qimgUrl: 'https://comem-qimg.herokuapp.com/api',
-* qimgSecret: 'changeme'
+  // TODO: add the qimg URL and secret token to the configuration
+  qimgUrl: 'https://comem-qimg.herokuapp.com/api',
+  qimgSecret: 'changeme'
 }
 ```
 
@@ -40,7 +41,8 @@ Do not forget to also update `src/app/config.sample.ts` to provide appropriate e
 
 ## Model
 
-Here's an example model you might need (save it a to a file in `src/models`).
+Here's model you might need.
+Save it, for example to `src/models/qimg-image.ts`.
 It represents the response from the qimg API when creating an image:
 
 ```ts
@@ -55,6 +57,14 @@ export class QimgImage {
 
 
 ## Implementation
+
+
+
+### Create a 
+
+```bash
+$> ionic generate provider Picture
+```
 
 Here's an example of code in a sample `ExamplePage` component that will:
 
