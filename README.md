@@ -108,6 +108,7 @@ Each group must send an e-mail **no later than March 23th 2018** to Simon Ouleva
 * [Citizen Engagement API documentation][citizen-engagement-api]
 * [Ionic setup][setup-project] ([complete starter project][starter-project])
 * [qimg API][qimg]
+* [TypeScript support in Atom](ATOM-TYPESCRIPT.md)
 
 
 
