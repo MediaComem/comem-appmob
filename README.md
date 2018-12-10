@@ -1,12 +1,13 @@
 # COMEM+ Mobile Applications course
 
-The goal of this course is to teach how to develop hybrid mobile applications, i.e. web apps embedded into native apps on multiple platforms.
+The goal of this course is to teach how to develop hybrid mobile applications,
+i.e. web apps embedded into native apps on multiple platforms.
 You will:
 
-* Learn about hybrid mobile application development with [Ionic][ionic] and [Cordova][cordova]
-* Learn the basics of [Angular][angular]
-* Design and develop a **mobile application** based on the citizen engagement theme introduced in the [previous course][webserv]
-* Run the mobile application on your **phone**
+* Learn about hybrid mobile application development with [Ionic][ionic] and [Cordova][cordova].
+* Learn the basics of [Angular][angular].
+* Design and develop a **mobile application** optionally based on the API developed in the [previous course][webserv].
+* Run the mobile application on your **phone**.
 
 This course is a [COMEM+][comem] [web development course][comem-webdev] taught at [HEIG-VD][heig].
 
@@ -65,21 +66,21 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 **Features**
 
-* A citizen must be able to register a new account and log in to the app (and log out).
-* A citizen must be able to report an issue at a specific location, optionally with a picture.
-* A citizen must be able to see what issues there are in a map of the area, and the details of those issues (picture, description, state, etc).
-* A citizen must be able to use filters or a search to see only some issues (on the map and/or in other screens); there must be at least one filter or search.
-* Citizens and staff members must be able to post comments on issues, and the list of comments for an issue must be visible somewhere in the app.
-* *Bonus*: A staff member can log in to the app, start working on issues, and resolve or reject them.
-* *Bonus*: A staff member can add, edit and remove issue types from inside the app.
+* A user must be able to register and/or log in (depending on the API's capabilities).
+* A user must be able to manage the main resources of the API's domain model.
+* At least a couple of mobile-oriented features should be used, for example:
+  * Geolocation of the user.
+  * Pictures taken with the phone's camera.
+* There should be a map showing geolocated resources.
+* There must be a resource list with filters or search parameters.
 
 **Implementation**
 
 * The app must follow Angular best practices.
-* The app must use the Citizen Engagement API.
-* The app must display a map of issues.
-* The app must use geolocation (e.g. to automatically determine an issue's location or center the map).
-* The app must use the camera (works only on physical devices).
+* The app must use an approved API.
+* The app should display a map of geolocated resources.
+* The app should use geolocation (e.g. to automatically the user's location or center the map).
+* The app should use the camera (works only on physical devices).
 * Secrets (passwords & keys) **must not** be committed to the Git repository.
 
 **Presentation**
@@ -96,7 +97,7 @@ You can choose from the following options (one is enough):
 
 ### Delivery
 
-Each group must send an e-mail **no later than March 23th 2018** to Simon Oulevay with:
+Each group must send an e-mail **no later than January 22nd 2019** to Simon Oulevay with:
 
 * The link to your source code repository on GitHub.
 * The link to your webcast, presentation page or user guide (if it's not in the repository).
@@ -105,7 +106,7 @@ Each group must send an e-mail **no later than March 23th 2018** to Simon Ouleva
 
 ## Useful links
 
-* [Citizen Engagement API documentation][citizen-engagement-api]
+* [Travel Log API documentation][travel-log-api]
 * [Ionic setup][setup-project] ([complete starter project][starter-project])
 * [qimg API][qimg]
 * [TypeScript support in Atom](ATOM-TYPESCRIPT.md)
@@ -116,7 +117,6 @@ Each group must send an e-mail **no later than March 23th 2018** to Simon Ouleva
 [angular-leaflet-directive]: https://github.com/tombatossals/angular-leaflet-directive
 [angularjs-geolocation]: https://github.com/arunisrael/angularjs-geolocation
 [chrome]: https://www.google.com/chrome/
-[citizen-engagement-api]: https://mediacomem.github.io/comem-citizen-engagement-api
 [comem]: http://www.heig-vd.ch/comem
 [comem-webdev]: https://github.com/MediaComem/comem-webdev
 [cordova]: https://cordova.apache.org
@@ -130,4 +130,5 @@ Each group must send an e-mail **no later than March 23th 2018** to Simon Ouleva
 [qimg]: https://mediacomem.github.io/comem-qimg/
 [setup-project]: https://github.com/MediaComem/comem-citizen-engagement-ionic-setup
 [starter-project]: https://github.com/MediaComem/comem-citizen-engagement-ionic-starter
+[travel-log-api]: https://comem-travel-log-api.herokuapp.com
 [webserv]: https://github.com/MediaComem/comem-webserv
