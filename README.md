@@ -107,7 +107,7 @@ Each group must send an e-mail **no later than January 22nd 2019** to Simon Oule
 ## Useful links
 
 * [Travel Log API documentation][travel-log-api]
-* [Ionic setup][setup-project] (*finished starter project coming soon*)
+* [Ionic setup][setup-project] ([completed starter project][starter-project])
 * [qimg API][qimg]
 * [TypeScript support in Atom](ATOM-TYPESCRIPT.md)
 
@@ -129,5 +129,6 @@ Each group must send an e-mail **no later than January 22nd 2019** to Simon Oule
 [node]: https://nodejs.org/
 [qimg]: https://mediacomem.github.io/comem-qimg/
 [setup-project]: https://github.com/MediaComem/comem-travel-log-ionic-setup
+[starter-project]: https://github.com/MediaComem/comem-travel-log-ionic-starter
 [travel-log-api]: https://comem-travel-log-api.herokuapp.com
 [webserv]: https://github.com/MediaComem/comem-webserv
