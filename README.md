@@ -67,20 +67,24 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 **Features**
 
 * A user must be able to register and/or log in (depending on the API's capabilities).
-* A user must be able to manage the main resources of the API's domain model.
-* At least a couple of mobile-oriented features should be used, for example:
-  * Geolocation of the user.
-  * Pictures taken with the phone's camera.
-* There should be a map showing geolocated resources.
+* A user must be able to manage the main resources of the API's domain model:
+  * A user must be able to create new instances of all the main resources of the domain model (e.g. create Trips and Places in the Travel Log).
+  * A user must be able to modify at least one of the resources of the domain model (e.g. update a Trip's title and description in the Travel Log).
+  * A user must be able to delete at least one of the resources of the domain model (e.g. delete a Place in the Travel Log).
+* At least two mobile-oriented features must be used, for example:
+  * Geolocation of the user (e.g. to center a map on the user's location, or to determine a Place's location in the Travel log).
+  * Pictures taken with the phone's camera (works only on physical devices).
+* There must be a map showing geolocated resources (with more than one item on the same map).
 * There must be a resource list with filters or search parameters.
 
 **Implementation**
 
 * The app must follow Angular best practices.
 * The app must use an approved API.
-* The app should display a map of geolocated resources.
-* The app should use geolocation (e.g. to automatically the user's location or center the map).
-* The app should use the camera (works only on physical devices).
+* Asynchronous code must be correct (e.g. callbacks, promises & observables).
+* The app must provide clear feedback when errors are likely:
+  * When submitting a form (input might be invalid or the API call might fail).
+  * When geolocating the user (it might fail).
 * Secrets (passwords & keys) **must not** be committed to the Git repository.
 
 **Presentation**
