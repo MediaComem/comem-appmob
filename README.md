@@ -101,7 +101,7 @@ You can choose from the following options (one is enough):
 
 ### Delivery
 
-Each group must send an e-mail **no later than January 22nd 2019** to Simon Oulevay with:
+Each group must send an e-mail **no later than January 25th 2019** to Simon Oulevay with:
 
 * The link to your source code repository on GitHub.
 * The link to your webcast, presentation page or user guide (if it's not in the repository).
