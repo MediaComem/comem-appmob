@@ -79,7 +79,7 @@ This course is a [COMEM+][comem] [web development course][comem-webdev] taught a
 
 **Implementation**
 
-* The app must follow Angular best practices.
+* The app must follow Angular and Ionic best practices.
 * The app must use an approved API.
 * Asynchronous code must be correct (e.g. callbacks, promises & observables).
 * The app must provide clear feedback when errors are likely:
